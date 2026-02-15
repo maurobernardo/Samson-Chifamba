@@ -1,0 +1,42 @@
+<!--
+  TEMPLATE EMAILJS – Portfólio Samson Chifamba
+  ============================================
+  1. Entra em https://dashboard.emailjs.com/
+  2. Email Templates → Create New Template
+  3. Cola o conteúdo abaixo no editor HTML do template.
+  4. Nas variáveis do template, usa exatamente: user_name, user_email, user_subject, user_message
+  5. No código (Contact.tsx) já estão: serviceId, templateId, publicKey – atualiza templateId e serviceId se criares um serviço/template novos.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto do Portfólio</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f5;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+    <tr>
+      <td style="background: linear-gradient(135deg, #0f172a 0%, #0e7490 100%); padding: 24px 32px; text-align: center;">
+        <h1 style="margin: 0; color: #00D9FF; font-size: 22px; font-weight: 700;">Portfólio – Samson Chifamba</h1>
+        <p style="margin: 8px 0 0; color: rgba(255,255,255,0.9); font-size: 14px;">Nova mensagem de contacto</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 32px;">
+        <p style="margin: 0 0 16px; color: #334155; font-size: 15px; line-height: 1.5;"><strong>Nome:</strong> {{user_name}}</p>
+        <p style="margin: 0 0 16px; color: #334155; font-size: 15px; line-height: 1.5;"><strong>Email:</strong> {{user_email}}</p>
+        <p style="margin: 0 0 16px; color: #334155; font-size: 15px; line-height: 1.5;"><strong>Assunto:</strong> {{user_subject}}</p>
+        <p style="margin: 0 0 8px; color: #334155; font-size: 14px; font-weight: 600;">Mensagem:</p>
+        <div style="background-color: #f1f5f9; border-left: 4px solid #00D9FF; padding: 16px; border-radius: 4px; color: #475569; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">{{user_message}}</div>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 16px 32px 24px; text-align: center; color: #94a3b8; font-size: 12px;">
+        Enviado a partir do formulário de contacto do portfólio Samson Chifamba.
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

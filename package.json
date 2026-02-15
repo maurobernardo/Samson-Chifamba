@@ -1,0 +1,9 @@
+{
+  "name": "samson-workspace",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --prefix Samson",
+    "build": "npm run build --prefix Samson",
+    "preview": "npm run preview --prefix Samson"
+  }
+}

@@ -1,0 +1,116 @@
+import { useEffect, useState } from 'react';
+import { Moon, Sun, Home, User2, Layers3, Briefcase, Mail, Menu, X, Languages } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
+
+const sections = [
+  { href: '#inicio', labelKey: 'nav.home', Icon: Home },
+  { href: '#sobre', labelKey: 'nav.about', Icon: User2 },
+  { href: '#skills', labelKey: 'nav.skills', Icon: Layers3 },
+  { href: '#experiencia', labelKey: 'nav.experience', Icon: Briefcase },
+  { href: '#contato', labelKey: 'nav.contact', Icon: Mail },
+] as const;
+
+export default function Navbar() {
+  const [isDark, setIsDark] = useState(false);
+  const [open, setOpen] = useState(false);
+  const { t, language, setLanguage } = useLanguage();
+
+  useEffect(() => {
+    const saved = localStorage.getItem('theme');
+    const enable = saved ? saved === 'dark' : true;
+    document.documentElement.classList.toggle('dark', enable);
+    setIsDark(enable);
+  }, []);
+
+  const toggleTheme = () => {
+    const next = !isDark;
+    setIsDark(next);
+    document.documentElement.classList.toggle('dark', next);
+    localStorage.setItem('theme', next ? 'dark' : 'light');
+  };
+
+  return (
+    <header className="fixed inset-x-0 top-0 z-50 w-full border-b border-background/40 bg-background/80 backdrop-blur-lg">
+      <div className="mx-auto w-full max-w-7xl px-4 md:px-8">
+        <div className="flex h-16 items-center justify-between">
+          <a href="#inicio" className="relative -m-1.5 p-1.5 text-lg font-bold transition-colors hover:text-primary flex items-center gap-2">
+            <span className="relative flex h-8 w-8 flex-shrink-0 overflow-hidden rounded-full bg-primary/20">
+              <span className="absolute inset-0 flex items-center justify-center text-primary font-semibold text-sm">SC</span>
+              <img src="/Samson.png" alt="Samson" className="absolute inset-0 h-full w-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+            </span>
+            Samson Chifamba
+          </a>
+          <nav aria-label="Global" className="hidden items-center gap-4 md:flex">
+            {sections.map((s) => (
+              <a
+                key={s.href}
+                href={s.href}
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all duration-300 hover:text-primary hover:-translate-y-px hover:shadow-sm hover:shadow-primary/20"
+              >
+                {s.Icon && <s.Icon size={16} />}
+                {t(s.labelKey)}
+              </a>
+            ))}
+            <div className="flex items-center gap-2 ml-2">
+              <button
+                aria-label={language === 'en' ? 'Switch to Portuguese' : 'Mudar para Inglês'}
+                onClick={() => setLanguage(language === 'en' ? 'pt' : 'en')}
+                className="rounded-full p-2 transition-all duration-300 hover:bg-muted hover:shadow-md hover:-translate-y-px"
+                title={language === 'en' ? 'Português' : 'English'}
+              >
+                <Languages size={18} />
+              </button>
+              <button
+                aria-label="Toggle theme"
+                onClick={toggleTheme}
+                className="rounded-full p-2 transition-all duration-300 hover:bg-muted hover:shadow-md hover:shadow-primary/20 hover:-translate-y-px focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              >
+                {isDark ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
+            </div>
+          </nav>
+          <div className="flex items-center gap-2 md:hidden">
+            <button
+              aria-label={language === 'en' ? 'Português' : 'English'}
+              onClick={() => setLanguage(language === 'en' ? 'pt' : 'en')}
+              className="rounded-full p-2 transition-all duration-300 hover:bg-muted"
+            >
+              <Languages size={18} />
+            </button>
+            <button
+              aria-label="Toggle theme"
+              onClick={toggleTheme}
+              className="rounded-full p-2 transition-all duration-300 hover:bg-muted"
+            >
+              {isDark ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+            <button
+              aria-label="Open menu"
+              onClick={() => setOpen(!open)}
+              className="rounded-full p-2 transition-colors hover:bg-muted focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            >
+              {open ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+      </div>
+      {open && (
+        <div className="md:hidden border-t border-background/40 bg-background/90">
+          <nav className="mx-auto w-full max-w-7xl px-4 py-4 grid gap-3" aria-label="Mobile">
+            {sections.map((s) => (
+              <a
+                key={s.href}
+                href={s.href}
+                onClick={() => setOpen(false)}
+                className="inline-flex items-center gap-2 py-2 text-foreground transition-all duration-300 rounded-md px-3 -mx-3 hover:bg-muted hover:text-primary"
+              >
+                {s.Icon && <s.Icon size={16} />}
+                {t(s.labelKey)}
+              </a>
+            ))}
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+}
