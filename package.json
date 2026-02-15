@@ -2,6 +2,7 @@
   "name": "samson-workspace",
   "private": true,
   "scripts": {
+    "postinstall": "npm install --prefix Samson",
     "dev": "npm run dev --prefix Samson",
     "build": "npm run build --prefix Samson",
     "preview": "npm run preview --prefix Samson"
