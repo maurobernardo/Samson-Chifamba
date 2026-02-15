@@ -1,0 +1,9 @@
+Para o botão "Download CV" funcionar no site:
+
+1. Coloque o seu CV em formato PDF nesta pasta (public).
+2. O ficheiro DEVE ter o nome exato: CV-Samson-Chifamba.pdf
+3. Após colocar o ficheiro, apague este ficheiro (COLOQUE-O-CV-AQUI.txt) se quiser.
+4. Faça commit e push para que o Vercel faça um novo deploy com o PDF.
+
+Caminho completo do ficheiro:
+  Samson/public/CV-Samson-Chifamba.pdf
