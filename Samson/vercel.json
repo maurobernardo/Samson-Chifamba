@@ -5,9 +5,8 @@
   "installCommand": "npm install",
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/((?!.*\\.pdf$).*)",
       "destination": "/index.html"
     }
   ]
 }
-

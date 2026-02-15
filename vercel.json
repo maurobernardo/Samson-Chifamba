@@ -3,6 +3,9 @@
   "outputDirectory": "Samson/dist",
   "installCommand": "npm install",
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/((?!.*\\.pdf$).*)",
+      "destination": "/index.html"
+    }
   ]
 }
